@@ -1,0 +1,48 @@
+# RevLab configuration template.
+#
+# Copy to revlab.toml next to where you run the tool, then fill in the paths for
+# this machine and -- this is not optional -- the targets you are allowed to
+# analyse. Everything below also falls back to environment variables
+# (REVLAB_GHIDRA_INSTALL, REVLAB_GHIDRA_MCP_ROOT, REVLAB_FRIDA_ROOT,
+# REVLAB_JAVA_HOME, REVLAB_ANDROID_SDK) and to auto-detection.
+
+[workspace]
+# Where per-target evidence directories are created (one dir per target).
+root = "D:\\RevLab\\workspaces"
+
+[paths]
+# Ghidra installation (the directory containing support/analyzeHeadless.bat).
+ghidra_install = "D:\\ghidra_12.1.3_PUBLIC"
+# Checkout of the Ghidra MCP server (the directory containing server.py).
+ghidra_mcp_root = "D:\\ghidra-mcp"
+# Frida working root: expects .venv/ and platform-tools/ inside it.
+frida_root = "D:\\frida"
+# JDK used by Ghidra. Ghidra 12 refuses JDK 8/16 -- point this at a JDK >= 21.
+jdk_home = ""
+# Android SDK (optional if platform-tools lives inside frida_root).
+android_sdk = ""
+
+[ghidra]
+# Ghidra project store. Empty = <workspace>/_ghidra_projects
+project_dir = ""
+
+[mcp]
+# How RevLab talks to the Ghidra MCP server.
+transport = "stdio"
+# Seconds to wait for one MCP call (import + auto-analysis of a big library is slow).
+timeout_s = 180
+
+[frida]
+# Pin one device serial. Multiple transports for the same emulator make
+# `adb wait-for-device` fail with "more than one device/emulator".
+serial = ""
+
+[scope]
+# Authorised targets: package names, app names or file name fragments.
+# A target is allowed when it matches one of these case-insensitively.
+# Leave empty and every pass that touches a target will be refused -- that is
+# the intended default. Only list software you own or are allowed to test.
+authorised = [
+  # "com.example.demo",
+  # "demo.apk",
+]

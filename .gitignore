@@ -1,0 +1,35 @@
+# RevLab - local working tree hygiene
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+
+# analysis workspaces: samples, evidence, reports (never commit a target)
+workspaces/
+*.apk
+*.apks
+*.xapk
+*.dex
+*.so
+*.elf
+*.dll
+*.exe
+
+# generated artefacts
+*.ghidra.json
+*.revlab.jsonl
+*.report.md
+*.report.html
+out/
+logs/
+revlab.toml
+
+# packaging outputs and build inputs that machines regenerate
+dist/
+packaging/.venv-build/
+android/build/
+android/*.keystore
+samples/

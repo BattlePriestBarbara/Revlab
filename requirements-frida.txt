@@ -1,0 +1,4 @@
+# Frida side of the toolchain. Versions are the ones this project was verified
+# against; the binding and frida-server must match *exactly* once deployed.
+frida==17.18.0
+frida-tools==14.4.5

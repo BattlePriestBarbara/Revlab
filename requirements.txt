@@ -1,0 +1,10 @@
+# RevLab core has no runtime dependencies: the static triage pass is standard
+# library only, so it runs on a clean machine.
+#
+# The two engines are separate on purpose -- install each into its own
+# environment to avoid fighting over one interpreter (see docs/02-environment.md):
+#
+#   Frida side   : python -m pip install -r requirements-frida.txt
+#   Ghidra side  : python -m pip install -r requirements-ghidra.txt
+#                  (or install PyGhidra from the wheels bundled inside
+#                   <GHIDRA_INSTALL>/Features/PyGhidra/pypkg/dist, which works offline)

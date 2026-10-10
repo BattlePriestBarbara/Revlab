@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "revlab"
+version = "0.2.0"
+description = "AI/MCP-driven reverse-engineering workbench: Ghidra for static, Frida for dynamic, JSON evidence in between"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Xinhang Yu" }]
+# The core is standard library only on purpose: triage has to work on a machine
+# with nothing installed. The engines are optional extras.
+dependencies = []
+
+[project.optional-dependencies]
+frida = ["frida>=17.0", "frida-tools>=13.0"]
+ghidra = ["pyghidra>=3.0", "jpype1>=1.5"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+revlab = "revlab.cli:main"
+
+[tool.setuptools]
+packages = ["revlab"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+revlab = ["hooks/*.js", "ghidra_scripts/*.java"]
+
+[tool.setuptools.package-dir]
+"" = "."
+
+# No test runner dependency: `python -m unittest discover -s tests` is enough.
+[tool.pytest.ini_options]
+testpaths = ["tests"]

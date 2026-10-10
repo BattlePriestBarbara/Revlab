@@ -1,0 +1,27 @@
+{
+  "_comment": "把这段合并进助手的 MCP 配置（Cline: cline_mcp_settings.json）。PATH 换成实际解释器；工作目录必须是包含 revlab.toml 的目录，否则授权范围为空、动态能力会被拒绝。",
+  "mcpServers": {
+    "revlab": {
+      "command": "D:\\python\\python.exe",
+      "args": ["-m", "revlab", "mcp", "serve"],
+      "cwd": "D:\\RevLab",
+      "disabled": false,
+      "autoApprove": [
+        "revlab_doctor",
+        "revlab_scope",
+        "revlab_sessions",
+        "revlab_findings",
+        "revlab_frida_hooks",
+        "revlab_frida_devices",
+        "revlab_ghidra_tools"
+      ],
+      "timeout": 600,
+      "alwaysAllow": []
+    }
+  },
+  "_notes": {
+    "autoApprove": "只放只读工具。triage / ghidra_summary / frida_run 会改状态或花很多时间，必须显式批准。",
+    "cwd": "revlab.toml 从进程工作目录读取；用 --config 也可以显式指定。",
+    "timeout": "headless 首次导入大库可能数分钟，超时给小了会把分析切断。"
+  }
+}
